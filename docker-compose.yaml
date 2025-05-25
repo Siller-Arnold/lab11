@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: Olena
+      POSTGRES_PASSWORD: mysecret
+      POSTGRES_DB: projectdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db_network  # Use a custom network for the database
+    
+  users-api:
+    build: .
+    container_name: USERS-API-LAB5
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - db_network  # Use the same custom network for the API
+    env_file:
+      - .env  # Load environment variables from .env file
+      
+volumes:
+  postgres_data:
+
+networks:
+  db_network:
+    driver: bridge  # Use a bridge network for the database and API to communicate

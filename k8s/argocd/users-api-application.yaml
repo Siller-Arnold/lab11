@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "users-api"
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: identity
+  source:
+    repoURL: "https://charts.m1klab.io"  # URL des Helm Chart Repositories (z.B. Helm Repo)
+    chart: "users-api"  # Name des Charts
+    targetRevision: "x.x.x"  # Version des Charts (z.B. 1.0.0 oder 'latest')
+    helm:
+      valueFiles:  # Falls du eine separate Datei für Helm-Werte verwenden möchtest
+        - "values.yaml"  # Pfad zu einer values.yaml-Datei
+      parameters:
+        - name: image.repository
+          value: "michaeltrusov/users-api"
+        - name: image.tag
+          value: "latest"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

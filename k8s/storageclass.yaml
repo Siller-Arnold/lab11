@@ -1,0 +1,9 @@
+# This file defines a StorageClass for local storage in Kubernetes.
+# The StorageClass is used to dynamically provision PersistentVolumes (PVs) for local storage.
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: docker.io/hostpath
+reclaimPolicy: Retain
+volumeBindingMode: Immediate

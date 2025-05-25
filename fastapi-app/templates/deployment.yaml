@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-api
+  labels:
+    app: users-api
+  namespace: users-api-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-api
+  template:
+    metadata:
+      labels:
+        app: users-api
+    spec:
+      containers:
+      - name: users-api-container
+        image: users-api:latest
+        ports:
+        - containerPort: 8000
+        command: ["sh", "-c"]
+        args: ["alembic upgrade head && uvicorn src.main:app --host=0.0.0.0 --port=8000"]

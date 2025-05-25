@@ -1,0 +1,6 @@
+FastAPI
+psycopg2-binary==2.9.3
+alembic==1.7.7
+pydantic-settings
+pydantic[email]
+uvicorn

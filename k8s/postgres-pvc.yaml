@@ -1,0 +1,14 @@
+# This file defines a PersistentVolumeClaim (PVC) for PostgreSQL in a Kubernetes cluster.
+# The PVC is used to request storage for PostgreSQL data and is backed by local storage.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: user-api-namespace
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage
+  resources:
+    requests:
+      storage: 1Gi

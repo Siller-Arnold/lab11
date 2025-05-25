@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: users-api-config
+  namespace: user-api-namespace
+data:
+  TEST_MODE: "true"

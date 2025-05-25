@@ -1,0 +1,14 @@
+# PostgreSQL Service für StatefulSet
+# This file defines a Service for PostgreSQL in a Kubernetes cluster.
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: user-api-namespace
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  clusterIP: None  # Headless service (necessary for StatefulSets)
+  selector:
+    app: postgres

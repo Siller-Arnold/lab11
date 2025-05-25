@@ -1,0 +1,13 @@
+image:
+  repository: arnoldsiller/users-api  # Dein DockerHub-Name hier
+  tag: "v1.0.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+ingress:
+  enabled: false
+
+resources: {}
