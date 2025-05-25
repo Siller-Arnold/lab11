@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/arnoldsiller/lab11
+    repoURL: https://github.com/Siller-Arnold/lab11
     targetRevision: HEAD
     path: helm/users-api
     helm:
