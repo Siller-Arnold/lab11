@@ -7,12 +7,13 @@
 {{- end }}
 
 {{- define "users-api.serviceAccountName" -}}
-{{- if .Values.serviceAccount.name }}
-{{ .Values.serviceAccount.name }}
-{{- else }}
+{{- if .Values.serviceAccount.create }}
 {{ include "users-api.fullname" . }}
+{{- else }}
+default
 {{- end }}
 {{- end }}
+
 {{- define "users-api.labels" -}}
 app.kubernetes.io/name: {{ include "users-api.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}

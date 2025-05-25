@@ -1,23 +1,21 @@
 image:
-  repository: arnoldsiller/users-api  # Dein DockerHub-Name hier
-  tag: lastest
+  repository: arnoldsiller/users-api
+  tag: latest
   pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
 
 service:
   type: ClusterIP
+  name: users-api
   port: 8000
 
 ingress:
   enabled: false
 
-resources: {}
-
-serviceAccount:
-  create: true
-  name: "helm-users-api-sa"
-
 autoscaling:
-  enabled: false
+  enabled: true   # oder false, falls du Auto-Scaling nicht verwenden möchtest
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80

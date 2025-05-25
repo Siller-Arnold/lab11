@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "users-api.fullname" . }}
+  name: users-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ include "users-api.name" . }}
+      app: users-api
   template:
     metadata:
       labels:
-        app: {{ include "users-api.name" . }}
+        app: users-api
     spec:
-      serviceAccountName: {{ include "users-api.serviceAccountName" . }}
+      serviceAccountName: users-api
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: users-api
+          image: "arnoldsiller/users-api:latest"
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000

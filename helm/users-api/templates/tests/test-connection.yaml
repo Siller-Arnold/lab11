@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "users-api.fullname" . }}-test-connection"
+  name: "users-api-test-connection"
   labels:
-    {{- include "users-api.labels" . | nindent 4 }}
+    app.kubernetes.io/name: users-api
+    app.kubernetes.io/instance: release-name
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +12,6 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "users-api.fullname" . }}:{{ .Values.service.port }}']
+      args:
+        - "users-api:{{ .Values.service.port | default 8000 }}"  # Hier sicherstellen, dass der Port korrekt gesetzt ist
   restartPolicy: Never
