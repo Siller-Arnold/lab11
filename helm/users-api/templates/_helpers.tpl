@@ -1,9 +1,9 @@
 {{- define "users-api.name" -}}
-users-api
+{{ .Chart.Name }}
 {{- end }}
 
 {{- define "users-api.fullname" -}}
-users-api
+{{ .Chart.Name }}
 {{- end }}
 
 {{- define "users-api.serviceAccountName" -}}
@@ -12,4 +12,8 @@ users-api
 {{- else }}
 {{ include "users-api.fullname" . }}
 {{- end }}
+{{- end }}
+{{- define "users-api.labels" -}}
+app.kubernetes.io/name: {{ include "users-api.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
