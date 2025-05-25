@@ -1,6 +1,6 @@
 image:
   repository: arnoldsiller/users-api  # Dein DockerHub-Name hier
-  tag: "v1.0.0"
+  tag: lastest
   pullPolicy: IfNotPresent
 
 service:
