@@ -14,7 +14,7 @@ resources: {}
 
 serviceAccount:
   create: true
-  name: ""
+  name: "helm-users-api-sa"
 
 autoscaling:
   enabled: false
